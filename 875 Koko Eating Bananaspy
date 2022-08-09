@@ -1,0 +1,43 @@
+# https://leetcode.com/problems/koko-eating-bananas/
+# T: O(nlogm), S:O(1)
+class Solution:
+    def check(self, piles, k, h):
+        time = 0
+        for pile in piles:
+            time += math.ceil(pile/k)
+        return time
+        
+    def minEatingSpeed(self, piles: List[int], h: int) -> int:
+        
+        left = 1
+        right = max(piles)
+        
+        while left < right:
+            mid = left + (right-left)//2
+            time = self.check(piles, mid, h)
+            if time > h:
+                left = mid + 1
+            else:
+                right = mid  
+        return right
+
+
+# Brute force
+# T: O(nm), S:O(1)
+# n: to traverse the pile, m: to traverse from 1 to max(piles) 
+class Solution:
+    def check(self, piles, k, h):
+        time = 0
+        for pile in piles:
+            time += math.ceil(pile/k)
+        return time>h
+        
+    def minEatingSpeed(self, piles: List[int], h: int) -> int:
+        k_max = max(piles)
+        k_min = k_max
+        for k in range(k_max, -1, -1):
+            if self.check(piles, k, h):
+                print("kmin", k_min)
+                return k_min
+            else:
+                k_min = k

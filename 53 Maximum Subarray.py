@@ -8,7 +8,7 @@ class Solution:
                 max_sum = max(max_sum, sum(nums[i:j+1]))
         return max_sum
 
-# brute force optimized
+# brute force optimized - store the sum of current subarray
 # T: O(n2), S: O(1)
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
@@ -20,7 +20,7 @@ class Solution:
                 max_sum = max(max_sum, current_subarray)
         return max_sum
 
-# Kadane's Algorithm
+# Kadane's Algorithm: Drop the subarray is sum is less than max sum till now
 # T: O(n), S: O(1)
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
